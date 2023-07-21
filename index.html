@@ -1,92 +1,123 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en-US" class="no-js">
 <head>
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#000000" />
-  
-<title>MIKHMON QR CODE SCANNER</title>
-  <style>
-    body{
-      background-color: #000000;
-      color :#ffffff;
-    }
-    video {
-      width: 100%    !important;
-      height: auto   !important;
-    }
-    .btn{
-      margin-top:5px;
-      margin-bottom:10px;
-      padding:5px;
-      background-color: #f2f2f2;
-      color: #000000;
-      border-radius:3px;
-      width: 150px;
-      cursor: pointer;
-    }
-    .camera{
-      width: 95%;
-    }
-    a{
-      text-decoration: none;
-      color:#20a8d8;
-    }
-    @font-face {
-      font-family: 'fontello';
-      src: url('./font/fontello.eot?14907215');
-      src: url('./font/fontello.eot?14907215#iefix') format('embedded-opentype'),
-           url('./font/fontello.woff?14907215') format('woff'),
-           url('./font/fontello.ttf?14907215') format('truetype'),
-           url('./font/fontello.svg?14907215#fontello') format('svg');
-      font-weight: normal;
-      font-style: normal;
-    }
-    .icon
-    {
-      font-family: "fontello";
-      font-style: normal;
-      font-weight: normal;
-      speak: none;
-      display: inline-block;
-      text-decoration: inherit;
-      width: 1em;
-      margin-right: .2em;
-      text-align: center;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1em;
-      margin-left: .2em;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  </style>
-<script type="text/javascript" src="llqrcode.js"></script>
-<script type="text/javascript" src="mikhmon_webqr.js?v1"></script>
-<script async src="https://arc.io/widget.min.js#rDZc6s4f"></script>  
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>How to use Instascan an HTML5 QR scanner</title>
+	<link rel="shortcut icon" href="https://learncodeweb.com/demo/favicon.ico">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+		google_ad_client: "ca-pub-6724419004010752",
+		enable_page_level_ads: true
+	  });
+	</script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131906273-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-131906273-1');
+	</script>
 </head>
+
 <body>
-  <center>
-    <div id="main">
-      <div id="mainbody">
-        <div class="camera" id="outdiv"></div>
-        <div style="display: table;">
-          <div style="display: table-row;">
-            <div style="display: table-cell; padding:3px;">
-              <div class="btn" id="reload" onclick="location.reload();"><i class="icon icon-arrows-cw">&#xe800;</i> Reload Camera</div>
-            </div>
-            <div style="display: table-cell; padding:3px;">
-              <!-- <div class="btn" onclick="document.location = 'googlechrome://navigate?url=https://laksa19.github.io/myqr/';"></div> -->
-              <a class="btn" href="intent://laksa19.github.io/myqr#Intent;scheme=http;package=com.android.chrome;end"><i class="icon icon-chrome-1">&#xf268;</i> Open in Chrome</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>MIKHMON QR CODE SCANNER <br>Powered by <a href="http://www.webqr.com">webqr.com</a></div>
-  </center>
-<canvas style="display:none;" id="qr-canvas" width="800" height="600"></canvas>
-<script type="text/javascript">load();</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<div class="bg-light border-bottom shadow-sm sticky-top">
+		<div class="container">
+		</div> <!--/.container-->
+	</div>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- demo left sidebar -->
+				<ins class="adsbygoogle"
+					 style="display:block"
+					 data-ad-client="ca-pub-6724419004010752"
+					 data-ad-slot="7706376079"
+					 data-ad-format="auto"
+					 data-full-width-responsive="true"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+			
+			<div class="col">
+				<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+				<h1><a href="https://learncodeweb.com/phonegap/how-to-use-instascan-an-html5-qr-scanner/">How to use Instascan an HTML5 QR scanner</a></h1>
+				<div class="col-sm-12">
+					<video id="preview" class="p-1 border" style="width:100%;"></video>
+				</div>
+				<script type="text/javascript">
+					var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+					scanner.addListener('scan',function(content){
+						alert(content);
+						//window.location.href=content;
+					});
+					Instascan.Camera.getCameras().then(function (cameras){
+						if(cameras.length>0){
+							scanner.start(cameras[0]);
+							$('[name="options"]').on('change',function(){
+								if($(this).val()==1){
+									if(cameras[0]!=""){
+										scanner.start(cameras[0]);
+									}else{
+										alert('No Front camera found!');
+									}
+								}else if($(this).val()==2){
+									if(cameras[1]!=""){
+										scanner.start(cameras[1]);
+									}else{
+										alert('No Back camera found!');
+									}
+								}
+							});
+						}else{
+							console.error('No cameras found.');
+							alert('No cameras found.');
+						}
+					}).catch(function(e){
+						console.error(e);
+						alert(e);
+					});
+				</script>
+				<div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+				  <label class="btn btn-primary active">
+					<input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera
+				  </label>
+				  <label class="btn btn-secondary">
+					<input type="radio" name="options" value="2" autocomplete="off"> Back Camera
+				  </label>
+				</div>
+			</div>
+			
+			
+			<div class="col-sm-3">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- demo left sidebar -->
+				<ins class="adsbygoogle"
+					 style="display:block"
+					 data-ad-client="ca-pub-6724419004010752"
+					 data-ad-slot="7706376079"
+					 data-ad-format="auto"
+					 data-full-width-responsive="true"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		
+		</div>
+	</div>
+	
 </body>
 </html>
-
