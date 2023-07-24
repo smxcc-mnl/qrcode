@@ -1,87 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Instascan Camera Switch</title>
+    <title>Instascan</title>
     <script type="text/javascript" src="instascan.min.js"></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f2f2f2;
-      }
-
-      #preview {
-        width: 100%;
-        max-width: 400px;
-        border: 2px solid #333;
-      }
-
-      #switch-button {
-        margin-top: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #428bca;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-    </style>
   </head>
   <body>
     <video id="preview"></video>
-    <button id="switch-button">Switch Camera</button>
-
     <script type="text/javascript">
-      let scanner;
-      const videoElement = document.getElementById('preview');
-      const switchButton = document.getElementById('switch-button');
-
-      function initializeScanner(cameraId) {
-        scanner = new Instascan.Scanner({ video: videoElement, mirror: false });
-
-        scanner.addListener('scan', function (content) {
-          console.log(content);
-        });
-
-        Instascan.Camera.getCameras().then(function (cameras) {
-          if (cameras.length > 0) {
-            if (cameraId) {
-              const selectedCamera = cameras.find(function (camera) {
-                return camera.id === cameraId;
-              });
-              scanner.start(selectedCamera);
-            } else {
-              scanner.start(cameras[0]);
-            }
-          } else {
-            console.error('No cameras found.');
-          }
-        }).catch(function (e) {
-          console.error(e);
-        });
-      }
-
-      switchButton.addEventListener('click', function () {
-        const currentCameraId = scanner._activeCameraId;
-        const cameras = scanner.cameras;
-        const currentCameraIndex = cameras.findIndex(function (camera) {
-          return camera.id === currentCameraId;
-        });
-
-        const nextCameraIndex = (currentCameraIndex + 1) % cameras.length;
-        const nextCamera = cameras[nextCameraIndex];
-        scanner.stop();
-        initializeScanner(nextCamera.id);
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        console.log(content);
       });
-
-      // Initialize with the first available camera
-      initializeScanner();
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
     </script>
   </body>
 </html>
