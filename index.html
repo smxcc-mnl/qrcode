@@ -3,7 +3,8 @@
   <head>
     <title>SMXCC MNL - QR Code Scanner</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script type="text/javascript" src="./asset/js/instascan.min.js"></script>
+    <link rel="stylesheet" href="./asset/css/all.min.css">
+	<script type="text/javascript" src="./asset/js/instascan.min.js"></script>
     <style>
       @font-face {
         font-family: 'Arimo';
@@ -51,13 +52,26 @@
       }
 
       button {
-        background-color: #007bff;
+        background-color: #ccc;
         color: #fff;
         border: none;
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
         border-radius: 5px;
+        transition: background-color 0.3s ease;
+		position: relative;
+        padding-right: 40px; 
+      }
+	  button i {
+		position: absolute;
+		right: 10px; /* Adjust the icon's right position within the button */
+		top: 50%; /* Center the icon vertically */
+		transform: translateY(-50%); /* Center the icon vertically */
+	 }
+
+      button:hover {
+        background-color: #999; /* Change background color on hover */
       }
 
       button:focus {
@@ -71,7 +85,9 @@
       <video id="preview"></video>
     </div>
     <div class="button-container">
-      <button onclick="switchCamera()">Switch Camera</button>
+      <button onclick="switchCamera()">
+		Switch Camera <i class="fas fa-sync-alt"></i>
+      </button>
     </div>
     <script>
       let scanner;
