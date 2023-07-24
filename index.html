@@ -114,28 +114,28 @@
       let cameras = [];
       let currentCameraIndex = 0;
 
-      async function startScanner(cameraId) {
-        try {
-          scanner = new Instascan.Scanner({
-            video: document.getElementById('preview'),
-            mirror: true // Set this to true if you want to mirror the video.
-          });
+      function startScanner(cameraId) {
+        scanner = new Instascan.Scanner({
+          video: document.getElementById('preview'),
+          mirror: false // Set this to true if you want to mirror the video.
+        });
 
-          scanner.addListener('scan', function(content) {
-            // Redirect the user to the scanned URL
-            window.location.href = content;
-          });
+        scanner.addListener('scan', function(content) {
+          // Redirect the user to the scanned URL
+          window.location.href = content;
+        });
 
-          cameras = await Instascan.Camera.getCameras();
+        Instascan.Camera.getCameras().then(camerasList => {
+          cameras = camerasList;
           if (cameras.length > 0) {
             currentCameraIndex = cameraId;
             scanner.start(cameras[currentCameraIndex]);
           } else {
             console.error("No camera available on this device!");
           }
-        } catch (error) {
+        }).catch(error => {
           console.error("Error accessing cameras: ", error);
-        }
+        });
       }
 
       function switchCamera() {
