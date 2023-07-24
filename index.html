@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Instascan Camera Selector</title>
+    <title>Instascan Camera Switch</title>
     <script type="text/javascript" src="instascan.min.js"></script>
     <style>
       body {
@@ -21,14 +21,6 @@
         border: 2px solid #333;
       }
 
-      #camera-select {
-        margin-top: 10px;
-        padding: 5px;
-        font-size: 16px;
-        border: 2px solid #333;
-        border-radius: 5px;
-      }
-
       #switch-button {
         margin-top: 10px;
         padding: 10px 20px;
@@ -43,13 +35,11 @@
   </head>
   <body>
     <video id="preview"></video>
-    <select id="camera-select"></select>
     <button id="switch-button">Switch Camera</button>
 
     <script type="text/javascript">
       let scanner;
       const videoElement = document.getElementById('preview');
-      const cameraSelect = document.getElementById('camera-select');
       const switchButton = document.getElementById('switch-button');
 
       function initializeScanner(cameraId) {
@@ -61,19 +51,11 @@
 
         Instascan.Camera.getCameras().then(function (cameras) {
           if (cameras.length > 0) {
-            cameras.forEach(function (camera) {
-              const option = document.createElement('option');
-              option.value = camera.id;
-              option.text = camera.name;
-              cameraSelect.appendChild(option);
-            });
-
             if (cameraId) {
               const selectedCamera = cameras.find(function (camera) {
                 return camera.id === cameraId;
               });
               scanner.start(selectedCamera);
-              cameraSelect.value = cameraId;
             } else {
               scanner.start(cameras[0]);
             }
@@ -85,14 +67,8 @@
         });
       }
 
-      cameraSelect.addEventListener('change', function () {
-        const selectedCameraId = this.value;
-        scanner.stop();
-        initializeScanner(selectedCameraId);
-      });
-
       switchButton.addEventListener('click', function () {
-        const currentCameraId = cameraSelect.value;
+        const currentCameraId = scanner._activeCameraId;
         const cameras = scanner.cameras;
         const currentCameraIndex = cameras.findIndex(function (camera) {
           return camera.id === currentCameraId;
