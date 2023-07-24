@@ -77,6 +77,23 @@
       button:focus {
         outline: none;
       }
+	  
+	        footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #1c1c1c; /* Set the text color for the footer */
+      }
+
+      footer a {
+        color: inherit; /* Inherit the color from the parent element (footer) */
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: none;
+        color: #555; /* Change the link color on hover */
+      }
     </style>
   </head>
   <body>
@@ -89,6 +106,9 @@
 		Switch Camera <i class="fas fa-sync-alt"></i>
       </button>
     </div>
+    <footer>
+      <a href="https://www.smxconventioncenter.com/" target="_blank">SMX Convention Center MNL &copy; 2023</a>
+    </footer>
     <script>
       let scanner;
       let cameras = [];
