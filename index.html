@@ -3,17 +3,22 @@
   <head>
     <title>SMXCC MNL - QR Code Scanner</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script type="text/javascript" src="./instascan.min.js"></script>
+    <script type="text/javascript" src="./asset/js/instascan.min.js"></script>
     <style>
+      @font-face {
+        font-family: 'Arimo';
+        src: url('./asset/font/Arimo-VariableFont_wght.ttf') format('truetype');
+      }
+	  
       body {
+        font-family: 'Arimo', Arial, sans-serif;
         margin: 0;
         padding: 0;
         display: grid;
         place-items: center;
         height: 100vh;
-        background-image: url('smxcc-bg.jpg');
+        background-image: url('./asset/img/smxcc-bg.jpg');
         background-size: cover;
-        font-family: Arial, sans-serif;
         color: #fff;
       }
 
@@ -49,11 +54,11 @@
   </head>
   <body>
     <h1>SMXCC MNL QR Code Scanner</h1>
-    <video id="preview" playsinline></video> <!-- Note the 'playsinline' attribute -->
+    <video id="preview"></video>
     <div class="button-container">
       <button onclick="switchCamera()">Switch Camera</button>
     </div>
-     <script>
+    <script>
       let scanner;
       let cameras = [];
       let currentCameraIndex = 0;
@@ -65,8 +70,8 @@
         });
 
         scanner.addListener('scan', function(content) {
-          alert('Scanned content: ' + content);
-          window.open(content, "_blank");
+          // Redirect the user to the scanned URL
+          window.location.href = content;
         });
 
         Instascan.Camera.getCameras().then(camerasList => {
