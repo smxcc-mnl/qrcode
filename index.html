@@ -48,7 +48,15 @@
       }
 
       .button-container {
+        display: flex; /* Use flexbox for the button container */
+        justify-content: center; /* Center the buttons horizontally */
         margin-top: 10px;
+      }
+
+      .button-container button,
+      .button-container a {
+        flex: 1; /* Allow buttons to occupy equal space within the container */
+        margin: 0 5px; /* Add some margin between the buttons */
       }
 
       button {
