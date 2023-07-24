@@ -77,6 +77,11 @@
       button:focus {
         outline: none;
       }
+      .return-button {
+        background-color: #357ae8;
+        padding: 10px 25px; /* Increase padding for the desired size */
+        font-size: 16px; /* Adjust font size for the desired size */
+      }
 	  
 	        footer {
         margin-top: 20px;
@@ -103,7 +108,10 @@
     </div>
     <div class="button-container">
       <button onclick="switchCamera()">
-		Switch Camera <i class="fas fa-sync-alt"></i>
+		    Switch Camera <i class="fas fa-sync-alt"></i>
+      </button>
+      <button onclick="returnToOriginalPage()" class="return-button">
+        Return <i class="fas fa-arrow-circle-left"></i>
       </button>
     </div>
     <footer>
@@ -144,6 +152,11 @@
           scanner.stop();
           scanner.start(cameras[currentCameraIndex]);
         }
+      }
+
+      function returnToOriginalPage() {
+        const originalUrl = "http://172.10.0.1:8002/index.php?zone=smx&redirurl=http%3A%2F%2Fwww.smxconventioncenter.com%2F";
+        window.location.href = originalUrl;
       }
 
       // Start with the default camera (first available)
