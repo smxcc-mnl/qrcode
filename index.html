@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Instascan</title>
+    <title>Instascan - QR Code Scanner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script type="text/javascript" src="./instascan.min.js"></script>
   </head>
   <body>
-    <video id="preview"></video>
+    <h1>QR Code Scanner</h1>
+    <video id="preview" style="width: 100%;"></video>
+    <div>
+      <button onclick="switchCamera()">Switch Camera</button>
+    </div>
     <script>
-        let scanner = new Instascan.Scanner(
-            {
-                video: document.getElementById('preview')
-            }
-        );
-        scanner.addListener('scan', function(content) {
-            alert('Escaneou o conteudo: ' + content);
-            window.open(content, "_blank");
-        });
-        Instascan.Camera.getCameras().then(cameras => 
-        {
-            if(cameras.length > 0){
-                scanner.start(cameras[0]);
-            } else {
-                console.error("Não existe câmera no dispositivo!");
-            }
-        });
-    </script>
+      let scanner;
+      let selectedCamera = 0;
 
- </body>
+      function startScanner(cameraId) {
+        scanner = new Instascan.Scanner({
+          video: document.getElementById('preview'),
+          mirror: false // Set this to true if you want to mirror the video.
+        });
+
+        scanner.addListener('scan', function(content) {
+          alert('Scanned content: ' + content);
+          window.open(content, "_blank");
+        });
+
+        Instascan.Camera.getCameras().then(cameras => {
+          if (cameras.length > 0) {
+            selectedCamera = cameraId;
+            scanner.start(cameras[selectedCamera]);
+          } else {
+            console.error("No camera available on this device!");
+          }
+        }).catch(error => {
+          console.error("Error accessing cameras: ", error);
+        });
+      }
+
+      function switchCamera() {
+        if (scanner) {
+          Instascan.Camera.getCameras().then(cameras => {
+            if (cameras.length > 1) {
+              selectedCamera = (selectedCamera + 1) % cameras.length;
+              scanner.stop();
+              scanner.start(cameras[selectedCamera]);
+            } else {
+              console.error("Only one camera available.");
+            }
+          }).catch(error => {
+            console.error("Error accessing cameras: ", error);
+          });
+        }
+      }
+
+      // Start with the default camera (first available)
+      startScanner(0);
+    </script>
+  </body>
 </html>
