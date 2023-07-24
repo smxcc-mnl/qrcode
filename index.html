@@ -129,7 +129,11 @@
         });
 
         scanner.addListener('scan', function(content) {
-          const originalUrl = "http://172.10.0.1:8002/index.php?zone=smx&redirurl=http%3A%2F%2Fwww.smxconventioncenter.com%2F&voucher=" + content;
+          // Get the scanned voucher code
+          let voucherCode = content.trim();
+          // Create the URL with the scanned voucher code
+          const originalUrl = "http://172.10.0.1:8002/index.php?zone=smx&redirurl=http%3A%2F%2Fwww.smxconventioncenter.com%2F&voucher=" + voucherCode;
+          // Redirect the user to the generated URL
           window.location.href = originalUrl;
         });
 
