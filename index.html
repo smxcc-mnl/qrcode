@@ -8,9 +8,8 @@
       body {
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        place-items: center;
         height: 100vh;
         background-image: url('smxcc-bg.jpg');
         background-size: cover;
@@ -27,6 +26,10 @@
         width: 100%;
         max-width: 600px;
         border: 5px solid #fff;
+      }
+
+      .button-container {
+        margin-top: 20px;
       }
 
       button {
@@ -46,8 +49,8 @@
   </head>
   <body>
     <h1>SMXCC MNL QR Code Scanner</h1>
-    <video id="preview"></video>
-    <div>
+    <div id="preview"></div>
+    <div class="button-container">
       <button onclick="switchCamera()">Switch Camera</button>
     </div>
      <script>
