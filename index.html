@@ -110,6 +110,10 @@
       <button onclick="switchCamera()">
 		    Switch Camera <i class="fas fa-sync-alt"></i>
       </button>
+
+    <button onclick="openInChrome()" class="open-chrome-button">
+      <i class="fab fa-chrome"></i> Open in Chrome
+    </button>
       <button onclick="returnToOriginalPage()" class="return-button">
         Return <i class="fas fa-arrow-circle-left"></i>
       </button>
@@ -155,6 +159,25 @@
           currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
           scanner.stop();
           scanner.start(cameras[currentCameraIndex]);
+        }
+      }
+
+      function openInChrome() {
+        // Check if Chrome is the user's default browser
+        if (navigator.userAgent.indexOf("Chrome") !== -1) {
+          // Get the scanned voucher code
+          let voucherCode = content.trim();
+          // Create the URL with the scanned voucher code
+          const originalUrl =
+            "http://172.10.0.1:8002/index.php?zone=smx&redirurl=http%3A%2F%2Fwww.smxconventioncenter.com%2F&voucher=" +
+            voucherCode;
+
+          // Open the URL in Chrome
+          window.location.href =
+            "googlechrome://navigate?url=" + encodeURIComponent(originalUrl);
+        } else {
+          // If Chrome is not the default browser, just open the URL using the default behavior
+          window.location.href = originalUrl;
         }
       }
 
