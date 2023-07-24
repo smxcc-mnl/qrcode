@@ -111,7 +111,7 @@
 		    Switch Camera <i class="fas fa-sync-alt"></i>
       </button>
 
-    <button onclick="openInChrome()" class="open-chrome-button">
+    <button onclick="openInBrowser()" class="open-chrome-button">
       <i class="fab fa-chrome"></i> Open in Chrome
     </button>
       <button onclick="returnToOriginalPage()" class="return-button">
@@ -162,22 +162,20 @@
         }
       }
 
-      function openInChrome() {
-        // Check if Chrome is the user's default browser
-        if (navigator.userAgent.indexOf("Chrome") !== -1) {
-          // Get the scanned voucher code
-          let voucherCode = content.trim();
-          // Create the URL with the scanned voucher code
-          const originalUrl =
-            "http://172.10.0.1:8002/index.php?zone=smx&redirurl=http%3A%2F%2Fwww.smxconventioncenter.com%2F&voucher=" +
-            voucherCode;
+      function openInBrowser() {
+        const userAgent = navigator.userAgent.toLowerCase();
 
-          // Open the URL in Chrome
-          window.location.href =
-            "googlechrome://navigate?url=" + encodeURIComponent(originalUrl);
+        if (/android/.test(userAgent) && /chrome/.test(userAgent)) {
+          // For Android with Chrome, use Intent URL
+          const intentUrl =
+            'intent://smxcc-mnl.github.io/qrcode/#Intent;scheme=http;package=com.android.chrome;end';
+          window.location.href = intentUrl;
+        } else if (/iphone|ipad|ipod/.test(userAgent)) {
+          // For iOS devices, use regular link to prompt user to open in Safari
+          window.location.href = 'https://smxcc-mnl.github.io/qrcode/';
         } else {
-          // If Chrome is not the default browser, just open the URL using the default behavior
-          window.location.href = originalUrl;
+          // For other devices or browsers, open in a new tab
+          window.open('https://smxcc-mnl.github.io/qrcode/', '_blank');
         }
       }
 
