@@ -129,8 +129,8 @@
         });
 
         scanner.addListener('scan', function(content) {
-          // Redirect the user to the scanned URL
-          window.location.href = content;
+          const originalUrl = "http://172.10.0.1:8002/index.php?zone=smx&redirurl=http%3A%2F%2Fwww.smxconventioncenter.com%2F&voucher=" + content;
+          window.location.href = originalUrl;
         });
 
         Instascan.Camera.getCameras().then(camerasList => {
